@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&family=Poppins&family=Pridi&display=swap');
+
+*, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Parkinsans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #eee;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    font-size: 1.2rem;
+    padding-left: 10%;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #222;
+}
+/* generate main height = vh - (header height + footer height) */
+
+main {
+    padding: 4rem 10%;
+    min-height: calc(100vh - 119.875px - 23px - 55px);
+    margin: 0 auto;
+    background-color: #eee;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
