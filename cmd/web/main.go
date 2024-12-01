@@ -7,6 +7,11 @@ import (
 	"os"
 )
 
+type application struct {
+	errorLog *log.Logger
+	infoLog  *log.Logger
+}
+
 func main() {
 	// example of running the server with a custom port
 	// $ go run ./cmd/web -addr=":9999"		$$$$$$$$$$$$$$$$$$$$$
@@ -19,20 +24,16 @@ func main() {
 	// Leveled log
 	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
 	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
-	mux := http.NewServeMux()
 
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-
-	mux.Handle("/static/", http.StripPrefix("/static/", fileServer))
-
-	mux.HandleFunc("/", home)
-	mux.HandleFunc("/snippet/view", viewSnippet)
-	mux.HandleFunc("/snippet/create", createSnippet)
+	app := &application{
+		errorLog: errorLog,
+		infoLog:  infoLog,
+	}
 
 	srv := &http.Server{
 		Addr:     *addr,
 		ErrorLog: errorLog,
-		Handler:  mux,
+		Handler:  app.routes(),
 	}
 
 	// log.Printf("Server is running on port %s", *addr)
